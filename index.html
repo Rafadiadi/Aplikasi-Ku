@@ -22,289 +22,208 @@
         </ul>
     </nav>
 
-    <main class="container">
-        <div class="market-ticker-banner">
-            <div class="ticker-header">
-                <i class="fas fa-chart-line"></i>
-                <span>Live Market</span>
-                <span class="ticker-update" id="ticker-update-time">Memuat...</span>
-            </div>
-            
-            <div class="ticker-section">
-                <div class="ticker-section-title">
-                    <img src="https://flagcdn.com/24x18/us.png" alt="US" class="flag-icon">
-                    <span>US Market</span>
-                </div>
-                <div class="ticker-items">
-                    <div class="ticker-item" id="spy-ticker">
-                        <div class="ticker-symbol">
-                            <span class="ticker-badge">ETF</span>
-                            <span>SPY</span>
-                        </div>
-                        <div class="ticker-price" id="spy-price">--</div>
-                        <div class="ticker-change" id="spy-change">
-                            <span class="change-value">--</span>
-                            <span class="change-percent">(--)</span>
-                        </div>
-                    </div>
-                    <div class="ticker-item" id="qqq-ticker">
-                        <div class="ticker-symbol">
-                            <span class="ticker-badge">ETF</span>
-                            <span>QQQ</span>
-                        </div>
-                        <div class="ticker-price" id="qqq-price">--</div>
-                        <div class="ticker-change" id="qqq-change">
-                            <span class="change-value">--</span>
-                            <span class="change-percent">(--)</span>
-                        </div>
-                    </div>
-                    <div class="ticker-item" id="aapl-ticker">
-                        <div class="ticker-symbol">
-                            <i class="fab fa-apple" style="font-size: 1.1rem;"></i>
-                            <span>AAPL</span>
-                        </div>
-                        <div class="ticker-price" id="aapl-price">--</div>
-                        <div class="ticker-change" id="aapl-change">
-                            <span class="change-value">--</span>
-                            <span class="change-percent">(--)</span>
-                        </div>
-                    </div>
-                    <div class="ticker-item" id="msft-ticker">
-                        <div class="ticker-symbol">
-                            <i class="fab fa-microsoft" style="font-size: 1.1rem;"></i>
-                            <span>MSFT</span>
-                        </div>
-                        <div class="ticker-price" id="msft-price">--</div>
-                        <div class="ticker-change" id="msft-change">
-                            <span class="change-value">--</span>
-                            <span class="change-percent">(--)</span>
-                        </div>
-                    </div>
-                    <div class="ticker-item" id="nvda-ticker">
-                        <div class="ticker-symbol">
-                            <span class="ticker-badge nvidia">GPU</span>
-                            <span>NVDA</span>
-                        </div>
-                        <div class="ticker-price" id="nvda-price">--</div>
-                        <div class="ticker-change" id="nvda-change">
-                            <span class="change-value">--</span>
-                            <span class="change-percent">(--)</span>
-                        </div>
-                    </div>
-                    <div class="ticker-item" id="googl-ticker">
-                        <div class="ticker-symbol">
-                            <i class="fab fa-google" style="font-size: 1.1rem;"></i>
-                            <span>GOOGL</span>
-                        </div>
-                        <div class="ticker-price" id="googl-price">--</div>
-                        <div class="ticker-change" id="googl-change">
-                            <span class="change-value">--</span>
-                            <span class="change-percent">(--)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ticker-section">
-                <div class="ticker-section-title">
-                    <img src="https://flagcdn.com/24x18/id.png" alt="ID" class="flag-icon">
-                    <span>Indonesia Market</span>
-                </div>
-                <div class="ticker-items">
-                    <div class="ticker-item" id="ihsg-ticker">
-                        <div class="ticker-symbol">
-                            <span class="ticker-badge idx">IDX</span>
-                            <span>IHSG</span>
-                        </div>
-                        <div class="ticker-price" id="ihsg-price">--</div>
-                        <div class="ticker-change" id="ihsg-change">
-                            <span class="change-value">--</span>
-                            <span class="change-percent">(--)</span>
-                        </div>
-                    </div>
-                    <div class="ticker-item" id="bbca-ticker">
-                        <div class="ticker-symbol">
-                            <span class="ticker-badge bank">BANK</span>
-                            <span>BBCA</span>
-                        </div>
-                        <div class="ticker-price" id="bbca-price">--</div>
-                        <div class="ticker-change" id="bbca-change">
-                            <span class="change-value">--</span>
-                            <span class="change-percent">(--)</span>
-                        </div>
-                    </div>
-                    <div class="ticker-item" id="bbri-ticker">
-                        <div class="ticker-symbol">
-                            <span class="ticker-badge bank">BANK</span>
-                            <span>BBRI</span>
-                        </div>
-                        <div class="ticker-price" id="bbri-price">--</div>
-                        <div class="ticker-change" id="bbri-change">
-                            <span class="change-value">--</span>
-                            <span class="change-percent">(--)</span>
-                        </div>
-                    </div>
-                    <div class="ticker-item" id="tlkm-ticker">
-                        <div class="ticker-symbol">
-                            <span class="ticker-badge telco">TELCO</span>
-                            <span>TLKM</span>
-                        </div>
-                        <div class="ticker-price" id="tlkm-price">--</div>
-                        <div class="ticker-change" id="tlkm-change">
-                            <span class="change-value">--</span>
-                            <span class="change-percent">(--)</span>
-                        </div>
-                    </div>
-                    <div class="ticker-item" id="asii-ticker">
-                        <div class="ticker-symbol">
-                            <span class="ticker-badge auto">AUTO</span>
-                            <span>ASII</span>
-                        </div>
-                        <div class="ticker-price" id="asii-price">--</div>
-                        <div class="ticker-change" id="asii-change">
-                            <span class="change-value">--</span>
-                            <span class="change-percent">(--)</span>
-                        </div>
-                    </div>
-                    <div class="ticker-item" id="goto-ticker">
-                        <div class="ticker-symbol">
-                            <span class="ticker-badge tech">TECH</span>
-                            <span>GOTO</span>
-                        </div>
-                        <div class="ticker-price" id="goto-price">--</div>
-                        <div class="ticker-change" id="goto-change">
-                            <span class="change-value">--</span>
-                            <span class="change-percent">(--)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ticker-section">
-                <div class="ticker-section-title">
-                    <i class="fas fa-coins" style="color: #f7931a;"></i>
-                    <span>Crypto</span>
-                </div>
-                <div class="ticker-items">
-                    <div class="ticker-item" id="btc-ticker">
-                        <div class="ticker-symbol">
-                            <i class="fab fa-bitcoin" style="color: #f7931a; font-size: 1.2rem;"></i>
-                            <span>BTC</span>
-                        </div>
-                        <div class="ticker-price" id="btc-price">--</div>
-                        <div class="ticker-change" id="btc-change">
-                            <span class="change-value">--</span>
-                            <span class="change-percent">(--)</span>
-                        </div>
-                    </div>
-                    <div class="ticker-item" id="eth-ticker">
-                        <div class="ticker-symbol">
-                            <i class="fab fa-ethereum" style="color: #627eea; font-size: 1.2rem;"></i>
-                            <span>ETH</span>
-                        </div>
-                        <div class="ticker-price" id="eth-price">--</div>
-                        <div class="ticker-change" id="eth-change">
-                            <span class="change-value">--</span>
-                            <span class="change-percent">(--)</span>
-                        </div>
-                    </div>
-                </div>
+    <div class="market-ticker-strip">
+        <div class="ticker-strip-header">
+            <i class="fas fa-chart-line"></i>
+            <span>Live Market</span>
+            <span class="ticker-time" id="ticker-update-time">--:--:--</span>
+        </div>
+        <div class="ticker-strip-scroll" id="ticker-scroll">
+            <div class="ticker-strip-items">
+                <div class="strip-item" id="spy-ticker"><span class="strip-symbol">SPY</span><span class="strip-price" id="spy-price">--</span><span class="strip-change" id="spy-change">--</span></div>
+                <div class="strip-item" id="qqq-ticker"><span class="strip-symbol">QQQ</span><span class="strip-price" id="qqq-price">--</span><span class="strip-change" id="qqq-change">--</span></div>
+                <div class="strip-item" id="aapl-ticker"><span class="strip-symbol">AAPL</span><span class="strip-price" id="aapl-price">--</span><span class="strip-change" id="aapl-change">--</span></div>
+                <div class="strip-item" id="msft-ticker"><span class="strip-symbol">MSFT</span><span class="strip-price" id="msft-price">--</span><span class="strip-change" id="msft-change">--</span></div>
+                <div class="strip-item" id="nvda-ticker"><span class="strip-symbol">NVDA</span><span class="strip-price" id="nvda-price">--</span><span class="strip-change" id="nvda-change">--</span></div>
+                <div class="strip-item" id="googl-ticker"><span class="strip-symbol">GOOGL</span><span class="strip-price" id="googl-price">--</span><span class="strip-change" id="googl-change">--</span></div>
+                <div class="strip-item" id="amzn-ticker"><span class="strip-symbol">AMZN</span><span class="strip-price" id="amzn-price">--</span><span class="strip-change" id="amzn-change">--</span></div>
+                <div class="strip-item" id="tsla-ticker"><span class="strip-symbol">TSLA</span><span class="strip-price" id="tsla-price">--</span><span class="strip-change" id="tsla-change">--</span></div>
+                <div class="strip-item" id="meta-ticker"><span class="strip-symbol">META</span><span class="strip-price" id="meta-price">--</span><span class="strip-change" id="meta-change">--</span></div>
+                <div class="strip-divider">|</div>
+                <div class="strip-item" id="ihsg-ticker"><span class="strip-symbol flag-id">IHSG</span><span class="strip-price" id="ihsg-price">--</span><span class="strip-change" id="ihsg-change">--</span></div>
+                <div class="strip-item" id="bbca-ticker"><span class="strip-symbol flag-id">BBCA</span><span class="strip-price" id="bbca-price">--</span><span class="strip-change" id="bbca-change">--</span></div>
+                <div class="strip-item" id="bbri-ticker"><span class="strip-symbol flag-id">BBRI</span><span class="strip-price" id="bbri-price">--</span><span class="strip-change" id="bbri-change">--</span></div>
+                <div class="strip-item" id="bmri-ticker"><span class="strip-symbol flag-id">BMRI</span><span class="strip-price" id="bmri-price">--</span><span class="strip-change" id="bmri-change">--</span></div>
+                <div class="strip-item" id="tlkm-ticker"><span class="strip-symbol flag-id">TLKM</span><span class="strip-price" id="tlkm-price">--</span><span class="strip-change" id="tlkm-change">--</span></div>
+                <div class="strip-item" id="asii-ticker"><span class="strip-symbol flag-id">ASII</span><span class="strip-price" id="asii-price">--</span><span class="strip-change" id="asii-change">--</span></div>
+                <div class="strip-item" id="unvr-ticker"><span class="strip-symbol flag-id">UNVR</span><span class="strip-price" id="unvr-price">--</span><span class="strip-change" id="unvr-change">--</span></div>
+                <div class="strip-item" id="goto-ticker"><span class="strip-symbol flag-id">GOTO</span><span class="strip-price" id="goto-price">--</span><span class="strip-change" id="goto-change">--</span></div>
+                <div class="strip-divider">|</div>
+                <div class="strip-item" id="btc-ticker"><span class="strip-symbol crypto">BTC</span><span class="strip-price" id="btc-price">--</span><span class="strip-change" id="btc-change">--</span></div>
+                <div class="strip-item" id="eth-ticker"><span class="strip-symbol crypto">ETH</span><span class="strip-price" id="eth-price">--</span><span class="strip-change" id="eth-change">--</span></div>
+                <div class="strip-item" id="sol-ticker"><span class="strip-symbol crypto">SOL</span><span class="strip-price" id="sol-price">--</span><span class="strip-change" id="sol-change">--</span></div>
+                <div class="strip-item" id="xrp-ticker"><span class="strip-symbol crypto">XRP</span><span class="strip-price" id="xrp-price">--</span><span class="strip-change" id="xrp-change">--</span></div>
             </div>
         </div>
+    </div>
 
+    <main class="container">
         <section id="dashboard" class="section active">
             <h1 class="section-title">
                 <i class="fas fa-chart-line"></i>
                 Dashboard Keuangan
             </h1>
 
-            <div class="spy-detail-card" id="spy-detail-card">
-                <div class="spy-header">
-                    <div class="spy-info">
-                        <h2>SPY - SPDR S&P 500 ETF Trust</h2>
-                        <p>US Large Cap Index ETF</p>
+            <div class="stock-carousel-container">
+                <button class="carousel-btn prev" id="carousel-prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="stock-carousel" id="stock-carousel">
+                    <div class="stock-detail-card active" data-symbol="SPY">
+                        <div class="stock-header">
+                            <div class="stock-info">
+                                <h2>SPY - SPDR S&P 500 ETF</h2>
+                                <p>US Large Cap Index ETF</p>
+                            </div>
+                            <span class="market-status" id="market-status-spy">--</span>
+                        </div>
+                        <div class="stock-main">
+                            <div class="stock-price-large">
+                                <span class="price-currency">USD</span>
+                                <span class="price-value" id="detail-spy-price">--</span>
+                            </div>
+                            <div class="stock-change-large" id="detail-spy-change">--</div>
+                        </div>
+                        <div class="stock-stats">
+                            <div class="stat-item"><span class="stat-label">Open</span><span class="stat-value" id="detail-spy-open">--</span></div>
+                            <div class="stat-item"><span class="stat-label">High</span><span class="stat-value" id="detail-spy-high">--</span></div>
+                            <div class="stat-item"><span class="stat-label">Low</span><span class="stat-value" id="detail-spy-low">--</span></div>
+                            <div class="stat-item"><span class="stat-label">Prev Close</span><span class="stat-value" id="detail-spy-prev">--</span></div>
+                            <div class="stat-item"><span class="stat-label">Volume</span><span class="stat-value" id="detail-spy-vol">--</span></div>
+                            <div class="stat-item"><span class="stat-label">52W High</span><span class="stat-value" id="detail-spy-52h">--</span></div>
+                        </div>
+                        <div class="stock-recommendation" id="rec-spy">Memuat analisis...</div>
                     </div>
-                    <span class="market-status closed" id="market-status">Loading...</span>
+                    <div class="stock-detail-card" data-symbol="QQQ">
+                        <div class="stock-header">
+                            <div class="stock-info">
+                                <h2>QQQ - Invesco QQQ Trust</h2>
+                                <p>NASDAQ-100 Index ETF</p>
+                            </div>
+                            <span class="market-status" id="market-status-qqq">--</span>
+                        </div>
+                        <div class="stock-main">
+                            <div class="stock-price-large">
+                                <span class="price-currency">USD</span>
+                                <span class="price-value" id="detail-qqq-price">--</span>
+                            </div>
+                            <div class="stock-change-large" id="detail-qqq-change">--</div>
+                        </div>
+                        <div class="stock-stats">
+                            <div class="stat-item"><span class="stat-label">Open</span><span class="stat-value" id="detail-qqq-open">--</span></div>
+                            <div class="stat-item"><span class="stat-label">High</span><span class="stat-value" id="detail-qqq-high">--</span></div>
+                            <div class="stat-item"><span class="stat-label">Low</span><span class="stat-value" id="detail-qqq-low">--</span></div>
+                            <div class="stat-item"><span class="stat-label">Prev Close</span><span class="stat-value" id="detail-qqq-prev">--</span></div>
+                            <div class="stat-item"><span class="stat-label">Volume</span><span class="stat-value" id="detail-qqq-vol">--</span></div>
+                            <div class="stat-item"><span class="stat-label">52W High</span><span class="stat-value" id="detail-qqq-52h">--</span></div>
+                        </div>
+                        <div class="stock-recommendation" id="rec-qqq">Memuat analisis...</div>
+                    </div>
+                    <div class="stock-detail-card" data-symbol="NVDA">
+                        <div class="stock-header">
+                            <div class="stock-info">
+                                <h2>NVDA - NVIDIA Corporation</h2>
+                                <p>Semiconductor & AI Leader</p>
+                            </div>
+                            <span class="market-status" id="market-status-nvda">--</span>
+                        </div>
+                        <div class="stock-main">
+                            <div class="stock-price-large">
+                                <span class="price-currency">USD</span>
+                                <span class="price-value" id="detail-nvda-price">--</span>
+                            </div>
+                            <div class="stock-change-large" id="detail-nvda-change">--</div>
+                        </div>
+                        <div class="stock-stats">
+                            <div class="stat-item"><span class="stat-label">Open</span><span class="stat-value" id="detail-nvda-open">--</span></div>
+                            <div class="stat-item"><span class="stat-label">High</span><span class="stat-value" id="detail-nvda-high">--</span></div>
+                            <div class="stat-item"><span class="stat-label">Low</span><span class="stat-value" id="detail-nvda-low">--</span></div>
+                            <div class="stat-item"><span class="stat-label">Prev Close</span><span class="stat-value" id="detail-nvda-prev">--</span></div>
+                            <div class="stat-item"><span class="stat-label">Volume</span><span class="stat-value" id="detail-nvda-vol">--</span></div>
+                            <div class="stat-item"><span class="stat-label">52W High</span><span class="stat-value" id="detail-nvda-52h">--</span></div>
+                        </div>
+                        <div class="stock-recommendation" id="rec-nvda">Memuat analisis...</div>
+                    </div>
+                    <div class="stock-detail-card" data-symbol="BBCA">
+                        <div class="stock-header">
+                            <div class="stock-info">
+                                <h2>BBCA - Bank Central Asia</h2>
+                                <p>Bank Terbesar Indonesia</p>
+                            </div>
+                            <span class="market-status" id="market-status-bbca">--</span>
+                        </div>
+                        <div class="stock-main">
+                            <div class="stock-price-large">
+                                <span class="price-currency">IDR</span>
+                                <span class="price-value" id="detail-bbca-price">--</span>
+                            </div>
+                            <div class="stock-change-large" id="detail-bbca-change">--</div>
+                        </div>
+                        <div class="stock-stats">
+                            <div class="stat-item"><span class="stat-label">Open</span><span class="stat-value" id="detail-bbca-open">--</span></div>
+                            <div class="stat-item"><span class="stat-label">High</span><span class="stat-value" id="detail-bbca-high">--</span></div>
+                            <div class="stat-item"><span class="stat-label">Low</span><span class="stat-value" id="detail-bbca-low">--</span></div>
+                            <div class="stat-item"><span class="stat-label">Prev Close</span><span class="stat-value" id="detail-bbca-prev">--</span></div>
+                            <div class="stat-item"><span class="stat-label">Volume</span><span class="stat-value" id="detail-bbca-vol">--</span></div>
+                            <div class="stat-item"><span class="stat-label">52W High</span><span class="stat-value" id="detail-bbca-52h">--</span></div>
+                        </div>
+                        <div class="stock-recommendation" id="rec-bbca">Memuat analisis...</div>
+                    </div>
+                    <div class="stock-detail-card" data-symbol="BTC">
+                        <div class="stock-header">
+                            <div class="stock-info">
+                                <h2>BTC - Bitcoin</h2>
+                                <p>Cryptocurrency #1</p>
+                            </div>
+                            <span class="market-status open" id="market-status-btc">24/7</span>
+                        </div>
+                        <div class="stock-main">
+                            <div class="stock-price-large">
+                                <span class="price-currency">USD</span>
+                                <span class="price-value" id="detail-btc-price">--</span>
+                            </div>
+                            <div class="stock-change-large" id="detail-btc-change">--</div>
+                        </div>
+                        <div class="stock-stats">
+                            <div class="stat-item"><span class="stat-label">24h High</span><span class="stat-value" id="detail-btc-high">--</span></div>
+                            <div class="stat-item"><span class="stat-label">24h Low</span><span class="stat-value" id="detail-btc-low">--</span></div>
+                            <div class="stat-item"><span class="stat-label">Market Cap</span><span class="stat-value" id="detail-btc-mcap">--</span></div>
+                            <div class="stat-item"><span class="stat-label">24h Volume</span><span class="stat-value" id="detail-btc-vol">--</span></div>
+                            <div class="stat-item"><span class="stat-label">ATH</span><span class="stat-value" id="detail-btc-ath">--</span></div>
+                            <div class="stat-item"><span class="stat-label">Dominance</span><span class="stat-value" id="detail-btc-dom">--</span></div>
+                        </div>
+                        <div class="stock-recommendation" id="rec-btc">Memuat analisis...</div>
+                    </div>
                 </div>
-                <div class="spy-main">
-                    <div class="spy-price-large">
-                        <span class="price-currency">USD</span>
-                        <span class="price-value" id="spy-price-large">--</span>
-                    </div>
-                    <div class="spy-change-large" id="spy-change-large">
-                        <span>— $0.00 (0.00%)</span>
-                    </div>
-                </div>
-                <div class="spy-stats">
-                    <div class="stat-item">
-                        <span class="stat-label">Open</span>
-                        <span class="stat-value" id="spy-open">--</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">High</span>
-                        <span class="stat-value" id="spy-high">--</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Low</span>
-                        <span class="stat-value" id="spy-low">--</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Prev Close</span>
-                        <span class="stat-value" id="spy-prev-close">--</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Volume</span>
-                        <span class="stat-value" id="spy-volume">--</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">52W High</span>
-                        <span class="stat-value" id="spy-52w-high">--</span>
-                    </div>
-                </div>
-                <div class="spy-recommendation neutral" id="spy-recommendation">
-                    <div class="rec-indicator"></div>
-                    <span class="rec-text">Memuat analisis...</span>
-                </div>
+                <button class="carousel-btn next" id="carousel-next"><i class="fas fa-chevron-right"></i></button>
+                <div class="carousel-dots" id="carousel-dots"></div>
             </div>
 
             <div class="summary-cards">
                 <div class="card income-card">
-                    <div class="card-icon">
-                        <i class="fas fa-arrow-down"></i>
-                    </div>
+                    <div class="card-icon"><i class="fas fa-arrow-down"></i></div>
                     <div class="card-content">
                         <h3>Total Pemasukan</h3>
                         <p class="amount" id="total-income">Rp 0</p>
                         <span class="period">Minggu Ini</span>
                     </div>
                 </div>
-                
                 <div class="card expense-card">
-                    <div class="card-icon">
-                        <i class="fas fa-arrow-up"></i>
-                    </div>
+                    <div class="card-icon"><i class="fas fa-arrow-up"></i></div>
                     <div class="card-content">
                         <h3>Total Pengeluaran</h3>
                         <p class="amount" id="total-expense">Rp 0</p>
                         <span class="period">Minggu Ini</span>
                     </div>
                 </div>
-                
                 <div class="card balance-card">
-                    <div class="card-icon">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
+                    <div class="card-icon"><i class="fas fa-balance-scale"></i></div>
                     <div class="card-content">
                         <h3>Saldo</h3>
                         <p class="amount" id="balance">Rp 0</p>
                         <span class="period">Saat Ini</span>
                     </div>
                 </div>
-                
                 <div class="card savings-card">
-                    <div class="card-icon">
-                        <i class="fas fa-piggy-bank"></i>
-                    </div>
+                    <div class="card-icon"><i class="fas fa-piggy-bank"></i></div>
                     <div class="card-content">
                         <h3>Dana Darurat</h3>
                         <p class="amount" id="emergency-fund">Rp 0</p>
@@ -315,423 +234,231 @@
 
             <div class="chart-container">
                 <h2>Grafik Mingguan</h2>
-                <div class="chart-wrapper">
-                    <canvas id="weeklyChart"></canvas>
-                </div>
+                <div class="chart-wrapper"><canvas id="weeklyChart"></canvas></div>
             </div>
 
             <div class="recent-transactions">
                 <h2>Transaksi Terakhir</h2>
-                <div class="transaction-list" id="recent-list">
-                    <p class="empty-state">Belum ada transaksi</p>
-                </div>
+                <div class="transaction-list" id="recent-list"><p class="empty-state">Belum ada transaksi</p></div>
             </div>
         </section>
 
         <section id="transaksi" class="section">
-            <h1 class="section-title">
-                <i class="fas fa-exchange-alt"></i>
-                Kelola Transaksi Mingguan
-            </h1>
-
-            <div class="transaction-form-container">
-                <form id="transaction-form" class="transaction-form">
-                    <div class="form-group">
-                        <label for="transaction-type">Tipe Transaksi</label>
-                        <select id="transaction-type" required>
-                            <option value="income">Pemasukan</option>
-                            <option value="expense">Pengeluaran</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="transaction-category">Kategori</label>
-                        <select id="transaction-category" required>
-                            <optgroup label="Pemasukan" id="income-categories">
-                                <option value="gaji">Gaji</option>
-                                <option value="bonus">Bonus</option>
-                                <option value="freelance">Freelance</option>
-                                <option value="investasi">Hasil Investasi</option>
-                                <option value="lainnya-masuk">Lainnya</option>
-                            </optgroup>
-                            <optgroup label="Pengeluaran" id="expense-categories" style="display:none;">
-                                <option value="makanan">Makanan & Minuman</option>
-                                <option value="transportasi">Transportasi</option>
-                                <option value="belanja">Belanja</option>
-                                <option value="tagihan">Tagihan</option>
-                                <option value="hiburan">Hiburan</option>
-                                <option value="kesehatan">Kesehatan</option>
-                                <option value="pendidikan">Pendidikan</option>
-                                <option value="lainnya-keluar">Lainnya</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="transaction-amount">Jumlah (Rp)</label>
-                        <input type="text" id="transaction-amount" placeholder="Masukkan jumlah" required inputmode="numeric" class="currency-input">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="transaction-description">Deskripsi</label>
-                        <input type="text" id="transaction-description" placeholder="Deskripsi transaksi" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="transaction-date">Tanggal</label>
-                        <input type="date" id="transaction-date" required>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> Tambah Transaksi
-                    </button>
-                </form>
-            </div>
-
-            <div class="week-filter">
-                <h2>Filter Minggu</h2>
-                <div class="filter-controls">
-                    <button class="btn btn-secondary" id="prev-week">
-                        <i class="fas fa-chevron-left"></i> Minggu Sebelumnya
-                    </button>
-                    <span id="current-week-display">Minggu Ini</span>
-                    <button class="btn btn-secondary" id="next-week">
-                        Minggu Selanjutnya <i class="fas fa-chevron-right"></i>
-                    </button>
+            <h1 class="section-title"><i class="fas fa-exchange-alt"></i> Kelola Transaksi</h1>
+            <div class="transaction-grid">
+                <div class="form-container">
+                    <h2>Tambah Transaksi</h2>
+                    <form id="transaction-form">
+                        <div class="form-group">
+                            <label for="transaction-type">Jenis Transaksi</label>
+                            <select id="transaction-type" required>
+                                <option value="income">Pemasukan</option>
+                                <option value="expense">Pengeluaran</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="transaction-category">Kategori</label>
+                            <select id="transaction-category" required>
+                                <optgroup label="Pemasukan" id="income-categories">
+                                    <option value="gaji">Gaji</option>
+                                    <option value="bonus">Bonus</option>
+                                    <option value="freelance">Freelance</option>
+                                    <option value="investasi">Hasil Investasi</option>
+                                    <option value="lainnya-masuk">Lainnya</option>
+                                </optgroup>
+                                <optgroup label="Pengeluaran" id="expense-categories" style="display:none;">
+                                    <option value="makanan">Makanan & Minuman</option>
+                                    <option value="transportasi">Transportasi</option>
+                                    <option value="belanja">Belanja</option>
+                                    <option value="tagihan">Tagihan</option>
+                                    <option value="hiburan">Hiburan</option>
+                                    <option value="kesehatan">Kesehatan</option>
+                                    <option value="pendidikan">Pendidikan</option>
+                                    <option value="lainnya-keluar">Lainnya</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="transaction-amount">Jumlah (Rp)</label>
+                            <input type="text" id="transaction-amount" class="currency-input" placeholder="Contoh: 1,000,000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="transaction-description">Deskripsi</label>
+                            <input type="text" id="transaction-description" placeholder="Contoh: Gaji bulan Desember" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="transaction-date">Tanggal</label>
+                            <input type="date" id="transaction-date" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Transaksi</button>
+                    </form>
                 </div>
-            </div>
-
-            <div class="transactions-table">
-                <h2>Daftar Transaksi</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Tanggal</th>
-                            <th>Tipe</th>
-                            <th>Kategori</th>
-                            <th>Deskripsi</th>
-                            <th>Jumlah</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody id="transactions-body">
-                        <tr>
-                            <td colspan="6" class="empty-state">Belum ada transaksi</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="transactions-list-container">
+                    <div class="week-filter">
+                        <button class="btn btn-secondary" id="prev-week"><i class="fas fa-chevron-left"></i></button>
+                        <span id="current-week-display">Minggu Ini</span>
+                        <button class="btn btn-secondary" id="next-week"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="transactions-table">
+                            <thead>
+                                <tr><th>Tanggal</th><th>Jenis</th><th>Kategori</th><th>Deskripsi</th><th>Jumlah</th><th>Aksi</th></tr>
+                            </thead>
+                            <tbody id="transactions-body"><tr><td colspan="6" class="empty-state">Belum ada transaksi</td></tr></tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="dana-darurat" class="section">
-            <h1 class="section-title">
-                <i class="fas fa-shield-alt"></i>
-                Kalkulator Dana Darurat
-            </h1>
-
-            <div class="info-box">
-                <h3><i class="fas fa-info-circle"></i> Apa itu Dana Darurat?</h3>
-                <p>Dana darurat adalah simpanan yang disiapkan untuk menghadapi situasi tidak terduga seperti kehilangan pekerjaan, sakit, atau kebutuhan mendesak lainnya.</p>
-            </div>
-
-            <div class="formula-box">
-                <h3><i class="fas fa-calculator"></i> Rumus Dana Darurat</h3>
-                <div class="formula">
-                    <p><strong>Single (Lajang):</strong></p>
-                    <code>Dana Darurat = Pengeluaran Bulanan × 6 bulan</code>
-                    
-                    <p><strong>Menikah tanpa anak:</strong></p>
-                    <code>Dana Darurat = Pengeluaran Bulanan × 9 bulan</code>
-                    
-                    <p><strong>Menikah dengan anak / Sandwich Generation:</strong></p>
-                    <code>Dana Darurat = Pengeluaran Bulanan × 12 bulan</code>
-                </div>
-            </div>
-
-            <div class="calculator-container">
-                <form id="emergency-form" class="calculator-form">
-                    <div class="form-group">
-                        <label for="monthly-expense">Pengeluaran Bulanan (Rp)</label>
-                        <input type="text" id="monthly-expense" placeholder="Contoh: 5,000,000" required inputmode="numeric" class="currency-input">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="status">Status</label>
-                        <select id="status" required>
-                            <option value="single">Single (Lajang)</option>
-                            <option value="married">Menikah tanpa anak</option>
-                            <option value="family">Menikah dengan anak / Sandwich Generation</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="current-savings">Dana Darurat Saat Ini (Rp)</label>
-                        <input type="text" id="current-savings" placeholder="Contoh: 10,000,000" value="0" inputmode="numeric" class="currency-input">
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-calculator"></i> Hitung Dana Darurat
-                    </button>
-                </form>
-            </div>
-
-            <div id="emergency-result" class="result-container hidden">
-                <h3>Hasil Perhitungan</h3>
-                <div class="result-grid">
-                    <div class="result-item">
-                        <span class="result-label">Target Dana Darurat</span>
-                        <span class="result-value" id="target-emergency">Rp 0</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">Dana Saat Ini</span>
-                        <span class="result-value" id="current-emergency">Rp 0</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">Kekurangan</span>
-                        <span class="result-value" id="shortage-emergency">Rp 0</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">Persentase Tercapai</span>
-                        <span class="result-value" id="percentage-emergency">0%</span>
-                    </div>
-                </div>
-                <div class="progress-container">
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="emergency-progress"></div>
-                    </div>
-                </div>
-                <div class="savings-plan">
-                    <h4>Rencana Menabung</h4>
-                    <p>Untuk mencapai target dalam <strong>12 bulan</strong>, tabung: <span id="monthly-save-12">Rp 0</span>/bulan</p>
-                    <p>Untuk mencapai target dalam <strong>24 bulan</strong>, tabung: <span id="monthly-save-24">Rp 0</span>/bulan</p>
-                </div>
-                
-                <div id="emergency-recommendations" class="recommendations-box">
-                    <h4><i class="fas fa-lightbulb"></i> Rekomendasi Dana Darurat</h4>
-                    <div class="recommendation-content" id="emergency-rec-content"></div>
-                </div>
-            </div>
-
-            <div class="info-box recommendation-products">
-                <h3><i class="fas fa-university"></i> Rekomendasi Tempat Menyimpan Dana Darurat</h3>
-                <div class="product-grid">
-                    <div class="product-card">
-                        <div class="product-icon savings-acc"><i class="fas fa-piggy-bank"></i></div>
-                        <h4>Tabungan Bank</h4>
-                        <div class="product-rate">Bunga: 0.5% - 3%/tahun</div>
-                        <ul>
-                            <li><i class="fas fa-check"></i> Likuiditas tinggi</li>
-                            <li><i class="fas fa-check"></i> Dijamin LPS hingga Rp 2 Miliar</li>
-                            <li><i class="fas fa-times"></i> Return rendah</li>
-                        </ul>
-                        <div class="product-recommend">✅ Untuk 1-2 bulan pengeluaran</div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-icon deposit"><i class="fas fa-landmark"></i></div>
-                        <h4>Deposito</h4>
-                        <div class="product-rate">Bunga: 3% - 5%/tahun</div>
-                        <ul>
-                            <li><i class="fas fa-check"></i> Return lebih baik dari tabungan</li>
-                            <li><i class="fas fa-check"></i> Dijamin LPS</li>
-                            <li><i class="fas fa-times"></i> Ada penalty jika dicairkan sebelum jatuh tempo</li>
-                        </ul>
-                        <div class="product-recommend">✅ Untuk 2-4 bulan pengeluaran</div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-icon reksadana"><i class="fas fa-chart-area"></i></div>
-                        <h4>Reksa Dana Pasar Uang (RDPU)</h4>
-                        <div class="product-rate">Return: 4% - 6%/tahun</div>
-                        <ul>
-                            <li><i class="fas fa-check"></i> Return lebih tinggi dari deposito</li>
-                            <li><i class="fas fa-check"></i> Pencairan T+1 hingga T+3</li>
-                            <li><i class="fas fa-times"></i> Tidak dijamin LPS</li>
-                        </ul>
-                        <div class="product-recommend">✅ Untuk sisa dana darurat</div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-icon sbn"><i class="fas fa-scroll"></i></div>
-                        <h4>SBN (ORI/SBR/ST)</h4>
-                        <div class="product-rate">Kupon: 5% - 7%/tahun</div>
-                        <ul>
-                            <li><i class="fas fa-check"></i> Dijamin negara</li>
-                            <li><i class="fas fa-check"></i> Return kompetitif</li>
-                            <li><i class="fas fa-times"></i> Early redemption terbatas</li>
-                        </ul>
-                        <div class="product-recommend">⚠️ Cocok jika periode panjang</div>
-                    </div>
-                </div>
-                <div class="allocation-tip">
-                    <h4><i class="fas fa-balance-scale"></i> Tips Alokasi Dana Darurat</h4>
-                    <div class="allocation-visual">
-                        <div class="alloc-item" style="flex: 2; background: linear-gradient(135deg, #4CAF50, #8BC34A);">
-                            <span class="alloc-percent">20%</span>
-                            <span class="alloc-label">Tabungan</span>
+            <h1 class="section-title"><i class="fas fa-shield-alt"></i> Kalkulator Dana Darurat</h1>
+            <div class="calculator-grid">
+                <div class="form-container">
+                    <h2>Hitung Dana Darurat</h2>
+                    <form id="emergency-form">
+                        <div class="form-group">
+                            <label for="monthly-expense">Pengeluaran Bulanan (Rp)</label>
+                            <input type="text" id="monthly-expense" class="currency-input" placeholder="Contoh: 5,000,000" required>
                         </div>
-                        <div class="alloc-item" style="flex: 3; background: linear-gradient(135deg, #2196F3, #03A9F4);">
-                            <span class="alloc-percent">30%</span>
-                            <span class="alloc-label">Deposito</span>
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select id="status" required>
+                                <option value="single">Lajang (6 bulan)</option>
+                                <option value="married">Menikah tanpa anak (9 bulan)</option>
+                                <option value="family">Keluarga dengan anak (12 bulan)</option>
+                            </select>
                         </div>
-                        <div class="alloc-item" style="flex: 5; background: linear-gradient(135deg, #9C27B0, #E91E63);">
-                            <span class="alloc-percent">50%</span>
-                            <span class="alloc-label">RDPU</span>
+                        <div class="form-group">
+                            <label for="current-savings">Tabungan Saat Ini (Rp)</label>
+                            <input type="text" id="current-savings" class="currency-input" placeholder="Contoh: 10,000,000">
                         </div>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-calculator"></i> Hitung Dana Darurat</button>
+                    </form>
+                </div>
+                <div id="emergency-result" class="result-container hidden">
+                    <h3>Hasil Perhitungan Dana Darurat</h3>
+                    <div class="result-grid">
+                        <div class="result-item highlight">
+                            <span class="result-label">Target Dana Darurat</span>
+                            <span class="result-value" id="target-emergency">Rp 0</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Dana Saat Ini</span>
+                            <span class="result-value" id="current-emergency">Rp 0</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Kekurangan</span>
+                            <span class="result-value danger" id="shortage-emergency">Rp 0</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Persentase Tercapai</span>
+                            <span class="result-value" id="percentage-emergency">0%</span>
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar"><div class="progress-fill" id="emergency-progress"></div></div>
+                    </div>
+                    <div class="savings-plan">
+                        <h4>Rencana Menabung</h4>
+                        <div class="plan-grid">
+                            <div class="plan-item"><span>12 Bulan</span><span class="plan-value" id="monthly-save-12">Rp 0</span><span class="plan-label">/bulan</span></div>
+                            <div class="plan-item"><span>24 Bulan</span><span class="plan-value" id="monthly-save-24">Rp 0</span><span class="plan-label">/bulan</span></div>
+                        </div>
+                    </div>
+                    <div class="recommendation-box" id="emergency-recommendations">
+                        <h4><i class="fas fa-lightbulb"></i> Rekomendasi</h4>
+                        <div id="emergency-rec-content"></div>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="investasi" class="section">
-            <h1 class="section-title">
-                <i class="fas fa-chart-pie"></i>
-                Kalkulator Investasi ETF
-            </h1>
-
-            <div class="info-box">
-                <h3><i class="fas fa-info-circle"></i> Apa itu ETF?</h3>
-                <p>ETF (Exchange Traded Fund) adalah reksa dana yang diperdagangkan di bursa efek. ETF menggabungkan fitur reksa dana dan saham, memberikan diversifikasi dengan biaya rendah.</p>
-            </div>
-
-            <div class="formula-box">
-                <h3><i class="fas fa-calculator"></i> Rumus Investasi ETF</h3>
-                <div class="formula">
-                    <p><strong>Future Value (Nilai Masa Depan):</strong></p>
-                    <code>FV = P × ((1 + r)^n - 1) / r × (1 + r)</code>
-                    
-                    <p><strong>Compound Interest (Bunga Majemuk):</strong></p>
-                    <code>A = P × (1 + r/n)^(n×t)</code>
-                    
-                    <p><strong>Keterangan:</strong></p>
-                    <ul>
-                        <li>FV = Nilai Masa Depan</li>
-                        <li>P = Investasi Berkala (per bulan)</li>
-                        <li>r = Return tahunan / 12 (bulanan)</li>
-                        <li>n = Jumlah bulan investasi</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="etf-info">
-                <h3><i class="fas fa-list"></i> Contoh ETF Populer di Indonesia</h3>
-                <div class="etf-list">
-                    <div class="etf-item">
-                        <span class="etf-name">R-LQ45X</span>
-                        <span class="etf-desc">Mengikuti indeks LQ45</span>
-                    </div>
-                    <div class="etf-item">
-                        <span class="etf-name">XIJI</span>
-                        <span class="etf-desc">Indeks IDX30</span>
-                    </div>
-                    <div class="etf-item">
-                        <span class="etf-name">XIIT</span>
-                        <span class="etf-desc">Indeks IT (Teknologi)</span>
-                    </div>
-                    <div class="etf-item">
-                        <span class="etf-name">XISI</span>
-                        <span class="etf-desc">Indeks SRI-KEHATI</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="calculator-container">
-                <form id="etf-form" class="calculator-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="initial-investment">Investasi Awal (Rp)</label>
-                            <input type="text" id="initial-investment" placeholder="Contoh: 1,000,000" value="0" inputmode="numeric" class="currency-input">
+            <h1 class="section-title"><i class="fas fa-chart-pie"></i> Kalkulator Investasi ETF</h1>
+            <div class="calculator-grid">
+                <div class="form-container">
+                    <h2>Simulasi Investasi</h2>
+                    <form id="etf-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="initial-investment">Investasi Awal (Rp)</label>
+                                <input type="text" id="initial-investment" class="currency-input" placeholder="Contoh: 10,000,000">
+                            </div>
+                            <div class="form-group">
+                                <label for="monthly-investment">Investasi Bulanan (Rp)</label>
+                                <input type="text" id="monthly-investment" class="currency-input" placeholder="Contoh: 1,000,000" required>
+                            </div>
                         </div>
-                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expected-return">Expected Return Tahunan (%)</label>
+                                <input type="number" id="expected-return" placeholder="Contoh: 10" value="10" required min="0" max="50" step="0.1">
+                            </div>
+                            <div class="form-group">
+                                <label for="investment-period">Periode Investasi (Tahun)</label>
+                                <input type="number" id="investment-period" placeholder="Contoh: 10" required min="1" max="50">
+                            </div>
+                        </div>
                         <div class="form-group">
-                            <label for="monthly-investment">Investasi Bulanan (Rp)</label>
-                            <input type="text" id="monthly-investment" placeholder="Contoh: 500,000" required inputmode="numeric" class="currency-input">
+                            <label for="inflation-rate">Tingkat Inflasi Tahunan (%) <span class="hint">📊 Rata-rata Indonesia: 3-4%</span></label>
+                            <input type="number" id="inflation-rate" placeholder="Rata-rata Indonesia 3.5%" value="3.5" min="0" max="20" step="0.1" readonly>
+                            <small class="input-hint">Otomatis terisi berdasarkan rata-rata inflasi Indonesia 10 tahun terakhir</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-chart-line"></i> Hitung Investasi</button>
+                    </form>
+                </div>
+                <div id="etf-result" class="result-container hidden">
+                    <h3>Hasil Simulasi Investasi ETF</h3>
+                    <div class="result-grid">
+                        <div class="result-item highlight">
+                            <span class="result-label">Nilai Akhir Investasi</span>
+                            <span class="result-value" id="final-value">Rp 0</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Total Diinvestasikan</span>
+                            <span class="result-value" id="total-invested">Rp 0</span>
+                        </div>
+                        <div class="result-item success">
+                            <span class="result-label">Total Keuntungan</span>
+                            <span class="result-value" id="total-profit">Rp 0</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">ROI</span>
+                            <span class="result-value" id="roi">0%</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Nilai Riil (Setelah Inflasi)</span>
+                            <span class="result-value" id="real-value">Rp 0</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">Keuntungan Riil</span>
+                            <span class="result-value" id="real-profit">Rp 0</span>
                         </div>
                     </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="expected-return">Ekspektasi Return Tahunan (%)</label>
-                            <input type="number" id="expected-return" placeholder="Contoh: 10" value="10" required min="0" max="100" step="0.1">
+                    <div class="chart-container">
+                        <h4>Proyeksi Pertumbuhan</h4>
+                        <div class="chart-wrapper"><canvas id="investmentChart"></canvas></div>
+                    </div>
+                    <div class="yearly-breakdown">
+                        <h4>Breakdown Tahunan</h4>
+                        <div class="table-responsive">
+                            <table class="breakdown-table">
+                                <thead><tr><th>Tahun</th><th>Total Investasi</th><th>Nilai</th><th>Keuntungan</th></tr></thead>
+                                <tbody id="yearly-table"></tbody>
+                            </table>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="investment-period">Periode Investasi (Tahun)</label>
-                            <input type="number" id="investment-period" placeholder="Contoh: 10" required min="1" max="50">
-                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="inflation-rate">Tingkat Inflasi Tahunan (%) <span class="hint">📊 Rata-rata Indonesia: 3-4%</span></label>
-                        <input type="number" id="inflation-rate" placeholder="Rata-rata Indonesia 3.5%" value="3.5" min="0" max="20" step="0.1" readonly>
-                        <small class="input-hint">Otomatis terisi berdasarkan rata-rata inflasi Indonesia 10 tahun terakhir</small>
+                    <div class="recommendation-box" id="etf-recommendations">
+                        <h4><i class="fas fa-lightbulb"></i> Rekomendasi</h4>
+                        <div id="etf-rec-content"></div>
                     </div>
-                    
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-chart-line"></i> Hitung Investasi
-                    </button>
-                </form>
-            </div>
-
-            <div id="etf-result" class="result-container hidden">
-                <h3>Hasil Simulasi Investasi ETF</h3>
-                <div class="result-grid">
-                    <div class="result-item highlight">
-                        <span class="result-label">Nilai Investasi Akhir</span>
-                        <span class="result-value" id="final-value">Rp 0</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">Total Dana Diinvestasikan</span>
-                        <span class="result-value" id="total-invested">Rp 0</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">Keuntungan</span>
-                        <span class="result-value profit" id="total-profit">Rp 0</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">Return on Investment (ROI)</span>
-                        <span class="result-value" id="roi">0%</span>
-                    </div>
-                </div>
-
-                <div class="result-grid">
-                    <div class="result-item">
-                        <span class="result-label">Nilai Riil (Setelah Inflasi)</span>
-                        <span class="result-value" id="real-value">Rp 0</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">Keuntungan Riil</span>
-                        <span class="result-value" id="real-profit">Rp 0</span>
-                    </div>
-                </div>
-
-                <div class="chart-wrapper">
-                    <canvas id="investmentChart"></canvas>
-                </div>
-
-                <div class="yearly-breakdown">
-                    <h4>Rincian per Tahun</h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Tahun</th>
-                                <th>Total Diinvestasikan</th>
-                                <th>Nilai Investasi</th>
-                                <th>Keuntungan</th>
-                            </tr>
-                        </thead>
-                        <tbody id="yearly-table">
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div id="etf-recommendations" class="recommendations-box">
-                    <h4><i class="fas fa-lightbulb"></i> Rekomendasi Investasi ETF</h4>
-                    <div class="recommendation-content" id="etf-rec-content"></div>
                 </div>
             </div>
         </section>
     </main>
 
     <div class="toast" id="toast"></div>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="app.js"></script>
 </body>
