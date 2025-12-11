@@ -659,8 +659,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="inflation-rate">Tingkat Inflasi Tahunan (%)</label>
-                        <input type="number" id="inflation-rate" placeholder="Contoh: 3" value="3" min="0" max="20" step="0.1">
+                        <label for="inflation-rate">Tingkat Inflasi Tahunan (%) <span class="hint">📊 Rata-rata Indonesia: 3-4%</span></label>
+                        <input type="number" id="inflation-rate" placeholder="Rata-rata Indonesia 3.5%" value="3.5" min="0" max="20" step="0.1" readonly>
+                        <small class="input-hint">Otomatis terisi berdasarkan rata-rata inflasi Indonesia 10 tahun terakhir</small>
                     </div>
                     
                     <button type="submit" class="btn btn-primary">
