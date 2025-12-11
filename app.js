@@ -1,3 +1,16 @@
+const firebaseConfig = {
+    apiKey: "AIzaSyBxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    authDomain: "finance-tracker-app-xxx.firebaseapp.com",
+    databaseURL: "https://finance-tracker-app-xxx-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "finance-tracker-app-xxx",
+    storageBucket: "finance-tracker-app-xxx.appspot.com",
+    messagingSenderId: "123456789",
+    appId: "1:123456789:web:abcdefghijklmnop"
+};
+
+let db = null;
+let auth = null;
+let currentUser = null;
 let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
 let emergencyFundData = JSON.parse(localStorage.getItem('emergencyFundData')) || null;
 let currentWeekOffset = 0;
@@ -7,7 +20,46 @@ let marketDataCache = {};
 let currentCarouselIndex = 0;
 const carouselSymbols = ['SPY', 'QQQ', 'NVDA', 'BBCA', 'BTC'];
 
+const allStocks = [
+    { symbol: 'SPY', name: 'SPDR S&P 500 ETF Trust', market: 'US', type: 'ETF' },
+    { symbol: 'QQQ', name: 'Invesco QQQ Trust', market: 'US', type: 'ETF' },
+    { symbol: 'AAPL', name: 'Apple Inc.', market: 'US', type: 'Stock' },
+    { symbol: 'MSFT', name: 'Microsoft Corporation', market: 'US', type: 'Stock' },
+    { symbol: 'NVDA', name: 'NVIDIA Corporation', market: 'US', type: 'Stock' },
+    { symbol: 'GOOGL', name: 'Alphabet Inc.', market: 'US', type: 'Stock' },
+    { symbol: 'AMZN', name: 'Amazon.com Inc.', market: 'US', type: 'Stock' },
+    { symbol: 'TSLA', name: 'Tesla Inc.', market: 'US', type: 'Stock' },
+    { symbol: 'META', name: 'Meta Platforms Inc.', market: 'US', type: 'Stock' },
+    { symbol: 'NFLX', name: 'Netflix Inc.', market: 'US', type: 'Stock' },
+    { symbol: 'AMD', name: 'Advanced Micro Devices', market: 'US', type: 'Stock' },
+    { symbol: 'INTC', name: 'Intel Corporation', market: 'US', type: 'Stock' },
+    { symbol: 'DIS', name: 'Walt Disney Company', market: 'US', type: 'Stock' },
+    { symbol: 'V', name: 'Visa Inc.', market: 'US', type: 'Stock' },
+    { symbol: 'JPM', name: 'JPMorgan Chase & Co.', market: 'US', type: 'Stock' },
+    { symbol: 'IHSG', name: 'Indeks Harga Saham Gabungan', market: 'ID', type: 'Index' },
+    { symbol: 'BBCA', name: 'Bank Central Asia', market: 'ID', type: 'Stock' },
+    { symbol: 'BBRI', name: 'Bank Rakyat Indonesia', market: 'ID', type: 'Stock' },
+    { symbol: 'BMRI', name: 'Bank Mandiri', market: 'ID', type: 'Stock' },
+    { symbol: 'BBNI', name: 'Bank Negara Indonesia', market: 'ID', type: 'Stock' },
+    { symbol: 'TLKM', name: 'Telkom Indonesia', market: 'ID', type: 'Stock' },
+    { symbol: 'ASII', name: 'Astra International', market: 'ID', type: 'Stock' },
+    { symbol: 'UNVR', name: 'Unilever Indonesia', market: 'ID', type: 'Stock' },
+    { symbol: 'GOTO', name: 'GoTo Gojek Tokopedia', market: 'ID', type: 'Stock' },
+    { symbol: 'BUKA', name: 'Bukalapak.com', market: 'ID', type: 'Stock' },
+    { symbol: 'EMTK', name: 'Elang Mahkota Teknologi', market: 'ID', type: 'Stock' },
+    { symbol: 'ICBP', name: 'Indofood CBP Sukses', market: 'ID', type: 'Stock' },
+    { symbol: 'INDF', name: 'Indofood Sukses Makmur', market: 'ID', type: 'Stock' },
+    { symbol: 'BTC', name: 'Bitcoin', market: 'Crypto', type: 'Crypto' },
+    { symbol: 'ETH', name: 'Ethereum', market: 'Crypto', type: 'Crypto' },
+    { symbol: 'SOL', name: 'Solana', market: 'Crypto', type: 'Crypto' },
+    { symbol: 'XRP', name: 'Ripple', market: 'Crypto', type: 'Crypto' },
+    { symbol: 'BNB', name: 'Binance Coin', market: 'Crypto', type: 'Crypto' },
+    { symbol: 'ADA', name: 'Cardano', market: 'Crypto', type: 'Crypto' },
+    { symbol: 'DOGE', name: 'Dogecoin', market: 'Crypto', type: 'Crypto' }
+];
+
 document.addEventListener('DOMContentLoaded', () => {
+    initFirebase();
     initNavigation();
     initTransactionForm();
     initEmergencyForm();
@@ -19,7 +71,283 @@ document.addEventListener('DOMContentLoaded', () => {
     initMarketData();
     initCurrencyInputs();
     initCarousel();
+    initMarketSearch();
+    initAuthUI();
 });
+
+function initFirebase() {
+    try {
+        firebase.initializeApp(firebaseConfig);
+        db = firebase.database();
+        auth = firebase.auth();
+        
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                currentUser = user;
+                onUserLoggedIn(user);
+            } else {
+                currentUser = null;
+                onUserLoggedOut();
+            }
+        });
+        
+        updateSyncStatus('connecting');
+    } catch (error) {
+        console.log('Firebase not configured, using localStorage only');
+        updateSyncStatus('offline');
+    }
+}
+
+function updateSyncStatus(status) {
+    const icon = document.getElementById('sync-icon');
+    const text = document.getElementById('sync-status');
+    const userStatus = document.querySelector('.user-status');
+    
+    if (!icon || !text) return;
+    
+    userStatus.className = 'user-status';
+    
+    switch(status) {
+        case 'synced':
+            icon.className = 'fas fa-cloud-check';
+            text.textContent = 'Data tersimpan di cloud';
+            userStatus.classList.add('synced');
+            break;
+        case 'syncing':
+            icon.className = 'fas fa-sync-alt';
+            text.textContent = 'Menyinkronkan...';
+            userStatus.classList.add('syncing');
+            break;
+        case 'offline':
+            icon.className = 'fas fa-cloud-slash';
+            text.textContent = 'Mode offline (localStorage)';
+            userStatus.classList.add('offline');
+            break;
+        case 'connecting':
+            icon.className = 'fas fa-cloud';
+            text.textContent = 'Menyambungkan...';
+            break;
+        default:
+            icon.className = 'fas fa-cloud';
+            text.textContent = 'Login untuk sinkronisasi';
+    }
+}
+
+function onUserLoggedIn(user) {
+    const loginBtn = document.getElementById('btn-login');
+    loginBtn.innerHTML = `<i class="fas fa-user-check"></i> ${user.email.split('@')[0]}`;
+    loginBtn.classList.add('logged-in');
+    
+    updateSyncStatus('syncing');
+    loadDataFromFirebase();
+    closeLoginModal();
+}
+
+function onUserLoggedOut() {
+    const loginBtn = document.getElementById('btn-login');
+    loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
+    loginBtn.classList.remove('logged-in');
+    updateSyncStatus('offline');
+}
+
+function loadDataFromFirebase() {
+    if (!currentUser || !db) return;
+    
+    const userRef = db.ref(`users/${currentUser.uid}`);
+    
+    userRef.child('transactions').on('value', (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+            transactions = Object.values(data);
+            localStorage.setItem('transactions', JSON.stringify(transactions));
+            updateDashboard();
+            renderTransactions();
+        }
+        updateSyncStatus('synced');
+    });
+    
+    userRef.child('emergencyFund').on('value', (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+            emergencyFundData = data;
+            localStorage.setItem('emergencyFundData', JSON.stringify(emergencyFundData));
+            updateDashboard();
+        }
+    });
+}
+
+function saveToFirebase(path, data) {
+    if (!currentUser || !db) return;
+    
+    updateSyncStatus('syncing');
+    db.ref(`users/${currentUser.uid}/${path}`).set(data)
+        .then(() => updateSyncStatus('synced'))
+        .catch((error) => {
+            console.error('Firebase save error:', error);
+            updateSyncStatus('offline');
+        });
+}
+
+function initAuthUI() {
+    const loginBtn = document.getElementById('btn-login');
+    const closeBtn = document.getElementById('btn-close-modal');
+    const modal = document.getElementById('login-modal');
+    const form = document.getElementById('auth-form');
+    const tabs = document.querySelectorAll('.login-tab');
+    
+    let isLoginMode = true;
+    
+    loginBtn.addEventListener('click', () => {
+        if (currentUser) {
+            if (confirm('Apakah Anda yakin ingin logout?')) {
+                auth.signOut();
+                showToast('Berhasil logout', 'info');
+            }
+        } else {
+            modal.classList.add('active');
+        }
+    });
+    
+    closeBtn.addEventListener('click', closeLoginModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeLoginModal();
+    });
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            isLoginMode = tab.dataset.tab === 'login';
+            document.getElementById('auth-submit').innerHTML = isLoginMode 
+                ? '<i class="fas fa-sign-in-alt"></i> Login'
+                : '<i class="fas fa-user-plus"></i> Daftar';
+        });
+    });
+    
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('auth-email').value;
+        const password = document.getElementById('auth-password').value;
+        
+        try {
+            if (isLoginMode) {
+                await auth.signInWithEmailAndPassword(email, password);
+                showToast('Berhasil login!', 'success');
+            } else {
+                await auth.createUserWithEmailAndPassword(email, password);
+                showToast('Akun berhasil dibuat!', 'success');
+            }
+        } catch (error) {
+            let message = 'Terjadi kesalahan';
+            if (error.code === 'auth/invalid-email') message = 'Email tidak valid';
+            else if (error.code === 'auth/user-not-found') message = 'Akun tidak ditemukan';
+            else if (error.code === 'auth/wrong-password') message = 'Password salah';
+            else if (error.code === 'auth/email-already-in-use') message = 'Email sudah digunakan';
+            else if (error.code === 'auth/weak-password') message = 'Password terlalu lemah';
+            showToast(message, 'error');
+        }
+    });
+}
+
+function closeLoginModal() {
+    document.getElementById('login-modal').classList.remove('active');
+}
+
+function initMarketSearch() {
+    const searchInput = document.getElementById('market-search');
+    const searchResults = document.getElementById('search-results');
+    
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        
+        if (query.length < 1) {
+            searchResults.classList.remove('active');
+            return;
+        }
+        
+        const filtered = allStocks.filter(stock => 
+            stock.symbol.toLowerCase().includes(query) || 
+            stock.name.toLowerCase().includes(query)
+        ).slice(0, 8);
+        
+        if (filtered.length === 0) {
+            searchResults.innerHTML = '<div class="search-no-results">Tidak ditemukan</div>';
+        } else {
+            searchResults.innerHTML = filtered.map(stock => {
+                const data = marketDataCache[stock.symbol] || generateSearchStockData(stock);
+                const isUp = (data.changePercent || 0) >= 0;
+                const isIDR = stock.market === 'ID';
+                const priceDisplay = isIDR ? formatIDR(data.price) : `$${data.price?.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) || '--'}`;
+                const changeDisplay = `${isUp ? '+' : ''}${(data.changePercent || 0).toFixed(2)}%`;
+                
+                return `
+                    <div class="search-result-item" data-symbol="${stock.symbol}">
+                        <div class="result-left">
+                            <span class="result-symbol">${stock.symbol}</span>
+                            <span class="result-name">${stock.name}</span>
+                        </div>
+                        <div class="result-right">
+                            <span class="result-price">${priceDisplay}</span>
+                            <span class="result-change ${isUp ? 'up' : 'down'}">${changeDisplay}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        searchResults.classList.add('active');
+    });
+    
+    searchInput.addEventListener('focus', () => {
+        if (searchInput.value.length > 0) {
+            searchResults.classList.add('active');
+        }
+    });
+    
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.market-search-box')) {
+            searchResults.classList.remove('active');
+        }
+    });
+    
+    searchResults.addEventListener('click', (e) => {
+        const item = e.target.closest('.search-result-item');
+        if (item) {
+            const symbol = item.dataset.symbol;
+            scrollToTicker(symbol);
+            searchInput.value = '';
+            searchResults.classList.remove('active');
+        }
+    });
+}
+
+function generateSearchStockData(stock) {
+    const basePrices = {
+        'NFLX': 875, 'AMD': 138, 'INTC': 21, 'DIS': 112, 'V': 295, 'JPM': 245,
+        'BBNI': 5225, 'BUKA': 134, 'EMTK': 485, 'ICBP': 11350, 'INDF': 6800,
+        'BNB': 720, 'ADA': 1.08, 'DOGE': 0.42
+    };
+    const base = basePrices[stock.symbol] || 100;
+    return {
+        price: base + (Math.random() - 0.5) * base * 0.02,
+        changePercent: (Math.random() - 0.5) * 4
+    };
+}
+
+function scrollToTicker(symbol) {
+    const ticker = document.getElementById(`${symbol.toLowerCase()}-ticker`);
+    if (ticker) {
+        const container = document.getElementById('ticker-scroll');
+        container.scrollTo({
+            left: ticker.offsetLeft - 100,
+            behavior: 'smooth'
+        });
+        ticker.classList.add('highlight');
+        setTimeout(() => ticker.classList.remove('highlight'), 2000);
+    } else {
+        showToast(`${symbol} tidak ada di ticker, tapi datanya: ${JSON.stringify(generateSearchStockData({symbol}))}`, 'info');
+    }
+}
 
 function initCurrencyInputs() {
     const currencyInputs = document.querySelectorAll('.currency-input');
@@ -502,6 +830,9 @@ function initTransactionForm() {
 
 function saveTransactions() {
     localStorage.setItem('transactions', JSON.stringify(transactions));
+    const transactionsObj = {};
+    transactions.forEach(t => { transactionsObj[t.id] = t; });
+    saveToFirebase('transactions', transactionsObj);
 }
 
 function deleteTransaction(id) {
@@ -668,6 +999,7 @@ function initEmergencyForm() {
         
         emergencyFundData = { target: target, current: currentSavings, shortage: shortage, percentage: percentage };
         localStorage.setItem('emergencyFundData', JSON.stringify(emergencyFundData));
+        saveToFirebase('emergencyFund', emergencyFundData);
         generateEmergencyRecommendations(monthlyExpense, target, currentSavings, status);
         document.getElementById('emergency-result').classList.remove('hidden');
         updateDashboard();

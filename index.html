@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
 </head>
 <body>
     <nav class="navbar">
@@ -26,6 +28,11 @@
         <div class="ticker-strip-header">
             <i class="fas fa-chart-line"></i>
             <span>Live Market</span>
+            <div class="market-search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="market-search" placeholder="Cari saham..." autocomplete="off">
+                <div class="search-results" id="search-results"></div>
+            </div>
             <span class="ticker-time" id="ticker-update-time">--:--:--</span>
         </div>
         <div class="ticker-strip-scroll" id="ticker-scroll">
@@ -59,6 +66,18 @@
 
     <main class="container">
         <section id="dashboard" class="section active">
+            <div class="user-info-bar">
+                <div class="user-status">
+                    <i class="fas fa-cloud" id="sync-icon"></i>
+                    <span id="sync-status">Menyambungkan...</span>
+                </div>
+                <div class="user-actions">
+                    <button class="btn btn-sm" id="btn-login" title="Login untuk sinkronisasi data">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                </div>
+            </div>
+
             <h1 class="section-title">
                 <i class="fas fa-chart-line"></i>
                 Dashboard Keuangan
@@ -459,7 +478,34 @@
     </main>
 
     <div class="toast" id="toast"></div>
+
+    <div class="login-modal" id="login-modal">
+        <div class="login-modal-content">
+            <h2>🔐 Login / Daftar</h2>
+            <p>Login untuk menyimpan data ke cloud dan akses dari perangkat manapun</p>
+            <div class="login-tabs">
+                <button class="login-tab active" data-tab="login">Login</button>
+                <button class="login-tab" data-tab="register">Daftar</button>
+            </div>
+            <form id="auth-form">
+                <div class="form-group">
+                    <label for="auth-email">Email</label>
+                    <input type="email" id="auth-email" placeholder="email@contoh.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="auth-password">Password</label>
+                    <input type="password" id="auth-password" placeholder="Minimal 6 karakter" required minlength="6">
+                </div>
+                <button type="submit" class="btn btn-primary" id="auth-submit">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+            <button class="btn btn-secondary" style="margin-top: 1rem; width: 100%;" id="btn-close-modal">Batal</button>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
