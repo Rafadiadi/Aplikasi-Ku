@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceTracker - Kelola Keuangan Pribadi</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fas fa-wallet"></i>
+            <span>FinanceTracker</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#dashboard" class="active">Dashboard</a></li>
+            <li><a href="#transaksi">Transaksi</a></li>
+            <li><a href="#dana-darurat">Dana Darurat</a></li>
+            <li><a href="#investasi">Investasi ETF</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="market-ticker-banner">
+            <div class="ticker-header">
+                <i class="fas fa-chart-line"></i>
+                <span>Live Market</span>
+                <span class="ticker-update" id="ticker-update-time">Memuat...</span>
+            </div>
+            
+            <div class="ticker-section">
+                <div class="ticker-section-title">
+                    <img src="https://flagcdn.com/24x18/us.png" alt="US" class="flag-icon">
+                    <span>US Market</span>
+                </div>
+                <div class="ticker-items">
+                    <div class="ticker-item" id="spy-ticker">
+                        <div class="ticker-symbol">
+                            <span class="ticker-badge">ETF</span>
+                            <span>SPY</span>
+                        </div>
+                        <div class="ticker-price" id="spy-price">--</div>
+                        <div class="ticker-change" id="spy-change">
+                            <span class="change-value">--</span>
+                            <span class="change-percent">(--)</span>
+                        </div>
+                    </div>
+                    <div class="ticker-item" id="qqq-ticker">
+                        <div class="ticker-symbol">
+                            <span class="ticker-badge">ETF</span>
+                            <span>QQQ</span>
+                        </div>
+                        <div class="ticker-price" id="qqq-price">--</div>
+                        <div class="ticker-change" id="qqq-change">
+                            <span class="change-value">--</span>
+                            <span class="change-percent">(--)</span>
+                        </div>
+                    </div>
+                    <div class="ticker-item" id="aapl-ticker">
+                        <div class="ticker-symbol">
+                            <i class="fab fa-apple" style="font-size: 1.1rem;"></i>
+                            <span>AAPL</span>
+                        </div>
+                        <div class="ticker-price" id="aapl-price">--</div>
+                        <div class="ticker-change" id="aapl-change">
+                            <span class="change-value">--</span>
+                            <span class="change-percent">(--)</span>
+                        </div>
+                    </div>
+                    <div class="ticker-item" id="msft-ticker">
+                        <div class="ticker-symbol">
+                            <i class="fab fa-microsoft" style="font-size: 1.1rem;"></i>
+                            <span>MSFT</span>
+                        </div>
+                        <div class="ticker-price" id="msft-price">--</div>
+                        <div class="ticker-change" id="msft-change">
+                            <span class="change-value">--</span>
+                            <span class="change-percent">(--)</span>
+                        </div>
+                    </div>
+                    <div class="ticker-item" id="nvda-ticker">
+                        <div class="ticker-symbol">
+                            <span class="ticker-badge nvidia">GPU</span>
+                            <span>NVDA</span>
+                        </div>
+                        <div class="ticker-price" id="nvda-price">--</div>
+                        <div class="ticker-change" id="nvda-change">
+                            <span class="change-value">--</span>
+                            <span class="change-percent">(--)</span>
+                        </div>
+                    </div>
+                    <div class="ticker-item" id="googl-ticker">
+                        <div class="ticker-symbol">
+                            <i class="fab fa-google" style="font-size: 1.1rem;"></i>
+                            <span>GOOGL</span>
+                        </div>
+                        <div class="ticker-price" id="googl-price">--</div>
+                        <div class="ticker-change" id="googl-change">
+                            <span class="change-value">--</span>
+                            <span class="change-percent">(--)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ticker-section">
+                <div class="ticker-section-title">
+                    <i class="fas fa-coins" style="color: #f7931a;"></i>
+                    <span>Crypto</span>
+                </div>
+                <div class="ticker-items">
+                    <div class="ticker-item" id="btc-ticker">
+                        <div class="ticker-symbol">
+                            <i class="fab fa-bitcoin" style="color: #f7931a; font-size: 1.2rem;"></i>
+                            <span>BTC</span>
+                        </div>
+                        <div class="ticker-price" id="btc-price">--</div>
+                        <div class="ticker-change" id="btc-change">
+                            <span class="change-value">--</span>
+                            <span class="change-percent">(--)</span>
+                        </div>
+                    </div>
+                    <div class="ticker-item" id="eth-ticker">
+                        <div class="ticker-symbol">
+                            <i class="fab fa-ethereum" style="color: #627eea; font-size: 1.2rem;"></i>
+                            <span>ETH</span>
+                        </div>
+                        <div class="ticker-price" id="eth-price">--</div>
+                        <div class="ticker-change" id="eth-change">
+                            <span class="change-value">--</span>
+                            <span class="change-percent">(--)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <div class="spy-detail-card" id="spy-detail-card">
+                <div class="spy-header">
+                    <div class="spy-info">
+                        <h2>SPY - SPDR S&P 500 ETF Trust</h2>
+                        <p>US Large Cap Index ETF</p>
+                    </div>
+                    <div class="spy-status" id="spy-status">
+                        <span class="market-status" id="market-status">Loading...</span>
+                    </div>
+                </div>
+                <div class="spy-main">
+                    <div class="spy-price-large">
+                        <span class="price-value" id="spy-price-large">--</span>
+                        <span class="price-currency">USD</span>
+                    </div>
+                    <div class="spy-change-large" id="spy-change-large">
+                        <i class="fas fa-minus"></i>
+                        <span class="change-amount">$0.00</span>
+                        <span class="change-pct">(0.00%)</span>
+                    </div>
+                </div>
+                <div class="spy-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Open</span>
+                        <span class="stat-value" id="spy-open">--</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">High</span>
+                        <span class="stat-value" id="spy-high">--</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Low</span>
+                        <span class="stat-value" id="spy-low">--</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Prev Close</span>
+                        <span class="stat-value" id="spy-prev-close">--</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Volume</span>
+                        <span class="stat-value" id="spy-volume">--</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">52W High</span>
+                        <span class="stat-value" id="spy-52w-high">--</span>
+                    </div>
+                </div>
+                <div class="spy-recommendation" id="spy-recommendation">
+                    <div class="rec-indicator"></div>
+                    <span class="rec-text">Memuat analisis...</span>
+                </div>
+            </div>
+            
+            <div class="summary-cards">
+                <div class="card income-card">
+                    <div class="card-icon">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Total Pemasukan</h3>
+                        <p class="amount" id="total-income">Rp 0</p>
+                        <span class="period">Minggu Ini</span>
+                    </div>
+                </div>
+                
+                <div class="card expense-card">
+                    <div class="card-icon">
+                        <i class="fas fa-arrow-up"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Total Pengeluaran</h3>
+                        <p class="amount" id="total-expense">Rp 0</p>
+                        <span class="period">Minggu Ini</span>
+                    </div>
+                </div>
+                
+                <div class="card balance-card">
+                    <div class="card-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Saldo</h3>
+                        <p class="amount" id="balance">Rp 0</p>
+                        <span class="period">Saat Ini</span>
+                    </div>
+                </div>
+                
+                <div class="card savings-card">
+                    <div class="card-icon">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Dana Darurat</h3>
+                        <p class="amount" id="emergency-fund">Rp 0</p>
+                        <span class="period">Target: <span id="emergency-target">Rp 0</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h2>Grafik Mingguan</h2>
+                <div class="chart-wrapper">
+                    <canvas id="weeklyChart"></canvas>
+                </div>
+            </div>
+
+            <div class="recent-transactions">
+                <h2>Transaksi Terakhir</h2>
+                <div class="transaction-list" id="recent-list">
+                    <p class="empty-state">Belum ada transaksi</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="dana-darurat" class="section">
+            <h1 class="section-title">
+                <i class="fas fa-shield-alt"></i>
+                Kalkulator Dana Darurat
+            </h1>
+
+            <div class="info-box">
+                <h3><i class="fas fa-info-circle"></i> Apa itu Dana Darurat?</h3>
+                <p>Dana darurat adalah simpanan yang disiapkan untuk menghadapi situasi tidak terduga seperti kehilangan pekerjaan, sakit, atau kebutuhan mendesak lainnya.</p>
+            </div>
+
+            <div class="formula-box">
+                <h3><i class="fas fa-calculator"></i> Rumus Dana Darurat</h3>
+                <div class="formula">
+                    <p><strong>Single (Lajang):</strong></p>
+                    <code>Dana Darurat = Pengeluaran Bulanan × 6 bulan</code>
+                    
+                    <p><strong>Menikah tanpa anak:</strong></p>
+                    <code>Dana Darurat = Pengeluaran Bulanan × 9 bulan</code>
+                    
+                    <p><strong>Menikah dengan anak / Sandwich Generation:</strong></p>
+                    <code>Dana Darurat = Pengeluaran Bulanan × 12 bulan</code>
+                </div>
+            </div>
+
+            <div class="calculator-container">
+                <form id="emergency-form" class="calculator-form">
+                    <div class="form-group">
+                        <label for="monthly-expense">Pengeluaran Bulanan (Rp)</label>
+                        <input type="text" id="monthly-expense" placeholder="Contoh: 5,000,000" required inputmode="numeric" class="currency-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status" required>
+                            <option value="single">Single (Lajang)</option>
+                            <option value="married">Menikah tanpa anak</option>
+                            <option value="family">Menikah dengan anak / Sandwich Generation</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="current-savings">Dana Darurat Saat Ini (Rp)</label>
+                        <input type="text" id="current-savings" placeholder="Contoh: 10,000,000" value="0" inputmode="numeric" class="currency-input">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-calculator"></i> Hitung Dana Darurat
+                    </button>
+                </form>
+            </div>
+
+            <div id="emergency-result" class="result-container hidden">
+                <h3>Hasil Perhitungan</h3>
+                <div class="result-grid">
+                    <div class="result-item">
+                        <span class="result-label">Target Dana Darurat</span>
+                        <span class="result-value" id="target-emergency">Rp 0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Dana Saat Ini</span>
+                        <span class="result-value" id="current-emergency">Rp 0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Kekurangan</span>
+                        <span class="result-value" id="shortage-emergency">Rp 0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Persentase Tercapai</span>
+                        <span class="result-value" id="percentage-emergency">0%</span>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="emergency-progress"></div>
+                    </div>
+                </div>
+                <div class="savings-plan">
+                    <h4>Rencana Menabung</h4>
+                    <p>Untuk mencapai target dalam <strong>12 bulan</strong>, tabung: <span id="monthly-save-12">Rp 0</span>/bulan</p>
+                    <p>Untuk mencapai target dalam <strong>24 bulan</strong>, tabung: <span id="monthly-save-24">Rp 0</span>/bulan</p>
+                </div>
+                
+                <div id="emergency-recommendations" class="recommendations-box">
+                    <h4><i class="fas fa-lightbulb"></i> Rekomendasi Dana Darurat</h4>
+                    <div class="recommendation-content" id="emergency-rec-content"></div>
+                </div>
+            </div>
+
+        <section id="investasi" class="section">
+            <h1 class="section-title">
+                <i class="fas fa-chart-pie"></i>
+                Kalkulator Investasi ETF
+            </h1>
+
+            <div class="info-box">
+                <h3><i class="fas fa-info-circle"></i> Apa itu ETF?</h3>
+                <p>ETF (Exchange Traded Fund) adalah reksa dana yang diperdagangkan di bursa efek. ETF menggabungkan fitur reksa dana dan saham, memberikan diversifikasi dengan biaya rendah.</p>
+            </div>
+
+            <div class="formula-box">
+                <h3><i class="fas fa-calculator"></i> Rumus Investasi ETF</h3>
+                <div class="formula">
+                    <p><strong>Future Value (Nilai Masa Depan):</strong></p>
+                    <code>FV = P × ((1 + r)^n - 1) / r × (1 + r)</code>
+                    
+                    <p><strong>Compound Interest (Bunga Majemuk):</strong></p>
+                    <code>A = P × (1 + r/n)^(n×t)</code>
+                    
+                    <p><strong>Keterangan:</strong></p>
+                    <ul>
+                        <li>FV = Nilai Masa Depan</li>
+                        <li>P = Investasi Berkala (per bulan)</li>
+                        <li>r = Return tahunan / 12 (bulanan)</li>
+                        <li>n = Jumlah bulan investasi</li>
+                        <li>A = Nilai akhir investasi</li>
+                        <li>t = Waktu dalam tahun</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="etf-info">
+                <h3><i class="fas fa-list"></i> Contoh ETF Populer di Indonesia</h3>
+                <div class="etf-list">
+                    <div class="etf-item">
+                        <span class="etf-name">R-LQ45X</span>
+                        <span class="etf-desc">Mengikuti indeks LQ45</span>
+                    </div>
+                    <div class="etf-item">
+                        <span class="etf-name">XIJI</span>
+                        <span class="etf-desc">Indeks IDX30</span>
+                    </div>
+                    <div class="etf-item">
+                        <span class="etf-name">XIIT</span>
+                        <span class="etf-desc">Indeks IT (Teknologi)</span>
+                    </div>
+                    <div class="etf-item">
+                        <span class="etf-name">XISI</span>
+                        <span class="etf-desc">Indeks SRI-KEHATI</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="calculator-container">
+                <form id="etf-form" class="calculator-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="initial-investment">Investasi Awal (Rp)</label>
+                            <input type="text" id="initial-investment" placeholder="Contoh: 1,000,000" value="0" inputmode="numeric" class="currency-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="monthly-investment">Investasi Bulanan (Rp)</label>
+                            <input type="text" id="monthly-investment" placeholder="Contoh: 500,000" required inputmode="numeric" class="currency-input">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expected-return">Ekspektasi Return Tahunan (%)</label>
+                            <input type="number" id="expected-return" placeholder="Contoh: 10" value="10" required min="0" max="100" step="0.1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="investment-period">Periode Investasi (Tahun)</label>
+                            <input type="number" id="investment-period" placeholder="Contoh: 10" required min="1" max="50">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inflation-rate">Tingkat Inflasi Tahunan (%)</label>
+                        <input type="number" id="inflation-rate" placeholder="Contoh: 3" value="3" min="0" max="20" step="0.1">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-chart-line"></i> Hitung Investasi
+                    </button>
+                </form>
+            </div>
+
+            <div id="etf-result" class="result-container hidden">
+                <h3>Hasil Simulasi Investasi ETF</h3>
+                <div class="result-grid">
+                    <div class="result-item highlight">
+                        <span class="result-label">Nilai Investasi Akhir</span>
+                        <span class="result-value" id="final-value">Rp 0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Total Dana Diinvestasikan</span>
+                        <span class="result-value" id="total-invested">Rp 0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Keuntungan</span>
+                        <span class="result-value profit" id="total-profit">Rp 0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Return on Investment (ROI)</span>
+                        <span class="result-value" id="roi">0%</span>
+                    </div>
+                </div>
+
+                <div class="result-grid">
+                    <div class="result-item">
+                        <span class="result-label">Nilai Riil (Setelah Inflasi)</span>
+                        <span class="result-value" id="real-value">Rp 0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Keuntungan Riil</span>
+                        <span class="result-value" id="real-profit">Rp 0</span>
+                    </div>
+                </div>
+
+                <div class="chart-wrapper">
+                    <canvas id="investmentChart"></canvas>
+                </div>
+
+                <div class="yearly-breakdown">
+                    <h4>Rincian per Tahun</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tahun</th>
+                                <th>Total Diinvestasikan</th>
+                                <th>Nilai Investasi</th>
+                                <th>Keuntungan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="yearly-table">
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div id="etf-recommendations" class="recommendations-box">
+                    <h4><i class="fas fa-lightbulb"></i> Rekomendasi Investasi ETF</h4>
+                    <div class="recommendation-content" id="etf-rec-content"></div>
+                </div>
+            </div>
+
