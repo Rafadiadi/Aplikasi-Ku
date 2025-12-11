@@ -107,6 +107,81 @@
 
             <div class="ticker-section">
                 <div class="ticker-section-title">
+                    <img src="https://flagcdn.com/24x18/id.png" alt="ID" class="flag-icon">
+                    <span>Indonesia Market</span>
+                </div>
+                <div class="ticker-items">
+                    <div class="ticker-item" id="ihsg-ticker">
+                        <div class="ticker-symbol">
+                            <span class="ticker-badge idx">IDX</span>
+                            <span>IHSG</span>
+                        </div>
+                        <div class="ticker-price" id="ihsg-price">--</div>
+                        <div class="ticker-change" id="ihsg-change">
+                            <span class="change-value">--</span>
+                            <span class="change-percent">(--)</span>
+                        </div>
+                    </div>
+                    <div class="ticker-item" id="bbca-ticker">
+                        <div class="ticker-symbol">
+                            <span class="ticker-badge bank">BANK</span>
+                            <span>BBCA</span>
+                        </div>
+                        <div class="ticker-price" id="bbca-price">--</div>
+                        <div class="ticker-change" id="bbca-change">
+                            <span class="change-value">--</span>
+                            <span class="change-percent">(--)</span>
+                        </div>
+                    </div>
+                    <div class="ticker-item" id="bbri-ticker">
+                        <div class="ticker-symbol">
+                            <span class="ticker-badge bank">BANK</span>
+                            <span>BBRI</span>
+                        </div>
+                        <div class="ticker-price" id="bbri-price">--</div>
+                        <div class="ticker-change" id="bbri-change">
+                            <span class="change-value">--</span>
+                            <span class="change-percent">(--)</span>
+                        </div>
+                    </div>
+                    <div class="ticker-item" id="tlkm-ticker">
+                        <div class="ticker-symbol">
+                            <span class="ticker-badge telco">TELCO</span>
+                            <span>TLKM</span>
+                        </div>
+                        <div class="ticker-price" id="tlkm-price">--</div>
+                        <div class="ticker-change" id="tlkm-change">
+                            <span class="change-value">--</span>
+                            <span class="change-percent">(--)</span>
+                        </div>
+                    </div>
+                    <div class="ticker-item" id="asii-ticker">
+                        <div class="ticker-symbol">
+                            <span class="ticker-badge auto">AUTO</span>
+                            <span>ASII</span>
+                        </div>
+                        <div class="ticker-price" id="asii-price">--</div>
+                        <div class="ticker-change" id="asii-change">
+                            <span class="change-value">--</span>
+                            <span class="change-percent">(--)</span>
+                        </div>
+                    </div>
+                    <div class="ticker-item" id="goto-ticker">
+                        <div class="ticker-symbol">
+                            <span class="ticker-badge tech">TECH</span>
+                            <span>GOTO</span>
+                        </div>
+                        <div class="ticker-price" id="goto-price">--</div>
+                        <div class="ticker-change" id="goto-change">
+                            <span class="change-value">--</span>
+                            <span class="change-percent">(--)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ticker-section">
+                <div class="ticker-section-title">
                     <i class="fas fa-coins" style="color: #f7931a;"></i>
                     <span>Crypto</span>
                 </div>
@@ -137,25 +212,27 @@
             </div>
         </div>
 
+        <section id="dashboard" class="section active">
+            <h1 class="section-title">
+                <i class="fas fa-chart-line"></i>
+                Dashboard Keuangan
+            </h1>
+
             <div class="spy-detail-card" id="spy-detail-card">
                 <div class="spy-header">
                     <div class="spy-info">
                         <h2>SPY - SPDR S&P 500 ETF Trust</h2>
                         <p>US Large Cap Index ETF</p>
                     </div>
-                    <div class="spy-status" id="spy-status">
-                        <span class="market-status" id="market-status">Loading...</span>
-                    </div>
+                    <span class="market-status closed" id="market-status">Loading...</span>
                 </div>
                 <div class="spy-main">
                     <div class="spy-price-large">
-                        <span class="price-value" id="spy-price-large">--</span>
                         <span class="price-currency">USD</span>
+                        <span class="price-value" id="spy-price-large">--</span>
                     </div>
                     <div class="spy-change-large" id="spy-change-large">
-                        <i class="fas fa-minus"></i>
-                        <span class="change-amount">$0.00</span>
-                        <span class="change-pct">(0.00%)</span>
+                        <span>— $0.00 (0.00%)</span>
                     </div>
                 </div>
                 <div class="spy-stats">
@@ -184,12 +261,12 @@
                         <span class="stat-value" id="spy-52w-high">--</span>
                     </div>
                 </div>
-                <div class="spy-recommendation" id="spy-recommendation">
+                <div class="spy-recommendation neutral" id="spy-recommendation">
                     <div class="rec-indicator"></div>
                     <span class="rec-text">Memuat analisis...</span>
                 </div>
             </div>
-            
+
             <div class="summary-cards">
                 <div class="card income-card">
                     <div class="card-icon">
@@ -248,6 +325,101 @@
                 <div class="transaction-list" id="recent-list">
                     <p class="empty-state">Belum ada transaksi</p>
                 </div>
+            </div>
+        </section>
+
+        <section id="transaksi" class="section">
+            <h1 class="section-title">
+                <i class="fas fa-exchange-alt"></i>
+                Kelola Transaksi Mingguan
+            </h1>
+
+            <div class="transaction-form-container">
+                <form id="transaction-form" class="transaction-form">
+                    <div class="form-group">
+                        <label for="transaction-type">Tipe Transaksi</label>
+                        <select id="transaction-type" required>
+                            <option value="income">Pemasukan</option>
+                            <option value="expense">Pengeluaran</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="transaction-category">Kategori</label>
+                        <select id="transaction-category" required>
+                            <optgroup label="Pemasukan" id="income-categories">
+                                <option value="gaji">Gaji</option>
+                                <option value="bonus">Bonus</option>
+                                <option value="freelance">Freelance</option>
+                                <option value="investasi">Hasil Investasi</option>
+                                <option value="lainnya-masuk">Lainnya</option>
+                            </optgroup>
+                            <optgroup label="Pengeluaran" id="expense-categories" style="display:none;">
+                                <option value="makanan">Makanan & Minuman</option>
+                                <option value="transportasi">Transportasi</option>
+                                <option value="belanja">Belanja</option>
+                                <option value="tagihan">Tagihan</option>
+                                <option value="hiburan">Hiburan</option>
+                                <option value="kesehatan">Kesehatan</option>
+                                <option value="pendidikan">Pendidikan</option>
+                                <option value="lainnya-keluar">Lainnya</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="transaction-amount">Jumlah (Rp)</label>
+                        <input type="text" id="transaction-amount" placeholder="Masukkan jumlah" required inputmode="numeric" class="currency-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="transaction-description">Deskripsi</label>
+                        <input type="text" id="transaction-description" placeholder="Deskripsi transaksi" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="transaction-date">Tanggal</label>
+                        <input type="date" id="transaction-date" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Tambah Transaksi
+                    </button>
+                </form>
+            </div>
+
+            <div class="week-filter">
+                <h2>Filter Minggu</h2>
+                <div class="filter-controls">
+                    <button class="btn btn-secondary" id="prev-week">
+                        <i class="fas fa-chevron-left"></i> Minggu Sebelumnya
+                    </button>
+                    <span id="current-week-display">Minggu Ini</span>
+                    <button class="btn btn-secondary" id="next-week">
+                        Minggu Selanjutnya <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="transactions-table">
+                <h2>Daftar Transaksi</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Tipe</th>
+                            <th>Kategori</th>
+                            <th>Deskripsi</th>
+                            <th>Jumlah</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactions-body">
+                        <tr>
+                            <td colspan="6" class="empty-state">Belum ada transaksi</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
 
@@ -340,6 +512,74 @@
                 </div>
             </div>
 
+            <div class="info-box recommendation-products">
+                <h3><i class="fas fa-university"></i> Rekomendasi Tempat Menyimpan Dana Darurat</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-icon savings-acc"><i class="fas fa-piggy-bank"></i></div>
+                        <h4>Tabungan Bank</h4>
+                        <div class="product-rate">Bunga: 0.5% - 3%/tahun</div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Likuiditas tinggi</li>
+                            <li><i class="fas fa-check"></i> Dijamin LPS hingga Rp 2 Miliar</li>
+                            <li><i class="fas fa-times"></i> Return rendah</li>
+                        </ul>
+                        <div class="product-recommend">✅ Untuk 1-2 bulan pengeluaran</div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon deposit"><i class="fas fa-landmark"></i></div>
+                        <h4>Deposito</h4>
+                        <div class="product-rate">Bunga: 3% - 5%/tahun</div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Return lebih baik dari tabungan</li>
+                            <li><i class="fas fa-check"></i> Dijamin LPS</li>
+                            <li><i class="fas fa-times"></i> Ada penalty jika dicairkan sebelum jatuh tempo</li>
+                        </ul>
+                        <div class="product-recommend">✅ Untuk 2-4 bulan pengeluaran</div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon reksadana"><i class="fas fa-chart-area"></i></div>
+                        <h4>Reksa Dana Pasar Uang (RDPU)</h4>
+                        <div class="product-rate">Return: 4% - 6%/tahun</div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Return lebih tinggi dari deposito</li>
+                            <li><i class="fas fa-check"></i> Pencairan T+1 hingga T+3</li>
+                            <li><i class="fas fa-times"></i> Tidak dijamin LPS</li>
+                        </ul>
+                        <div class="product-recommend">✅ Untuk sisa dana darurat</div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon sbn"><i class="fas fa-scroll"></i></div>
+                        <h4>SBN (ORI/SBR/ST)</h4>
+                        <div class="product-rate">Kupon: 5% - 7%/tahun</div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Dijamin negara</li>
+                            <li><i class="fas fa-check"></i> Return kompetitif</li>
+                            <li><i class="fas fa-times"></i> Early redemption terbatas</li>
+                        </ul>
+                        <div class="product-recommend">⚠️ Cocok jika periode panjang</div>
+                    </div>
+                </div>
+                <div class="allocation-tip">
+                    <h4><i class="fas fa-balance-scale"></i> Tips Alokasi Dana Darurat</h4>
+                    <div class="allocation-visual">
+                        <div class="alloc-item" style="flex: 2; background: linear-gradient(135deg, #4CAF50, #8BC34A);">
+                            <span class="alloc-percent">20%</span>
+                            <span class="alloc-label">Tabungan</span>
+                        </div>
+                        <div class="alloc-item" style="flex: 3; background: linear-gradient(135deg, #2196F3, #03A9F4);">
+                            <span class="alloc-percent">30%</span>
+                            <span class="alloc-label">Deposito</span>
+                        </div>
+                        <div class="alloc-item" style="flex: 5; background: linear-gradient(135deg, #9C27B0, #E91E63);">
+                            <span class="alloc-percent">50%</span>
+                            <span class="alloc-label">RDPU</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="investasi" class="section">
             <h1 class="section-title">
                 <i class="fas fa-chart-pie"></i>
@@ -366,8 +606,6 @@
                         <li>P = Investasi Berkala (per bulan)</li>
                         <li>r = Return tahunan / 12 (bulanan)</li>
                         <li>n = Jumlah bulan investasi</li>
-                        <li>A = Nilai akhir investasi</li>
-                        <li>t = Waktu dalam tahun</li>
                     </ul>
                 </div>
             </div>
@@ -488,4 +726,13 @@
                     <div class="recommendation-content" id="etf-rec-content"></div>
                 </div>
             </div>
+        </section>
+    </main>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
 
